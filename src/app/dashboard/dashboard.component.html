@@ -1,0 +1,376 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+  <div class="container">
+    <a class="navbar-brand text-white" href="#">SAAS2-UI</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link " href="#">
+                        <i class="fas fa-desktop text-white " data-toggle="tooltip" data-placement="bottom" title="Desktop View"></i>
+                    </a>
+        </li>
+      </ul>
+      <div class="my-lg-0">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="#">
+                            <i class="fas fa-square text-white" data-toggle="tooltip" data-placement="bottom" title="Show Borders"></i>
+                        </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">
+                            <i class="fas fa-eye text-white" data-toggle="tooltip" data-placement="bottom" title="Preview"></i>
+                        </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">
+                            <i class="fas fa-arrows-alt text-white" data-toggle="tooltip" data-placement="bottom" title="Fullscreen"></i>
+                        </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">
+                            <i class="fas fa-code text-white" data-toggle="tooltip" data-placement="bottom" title="Export"></i>
+                        </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">
+                            <i class="fas fa-undo text-white" data-toggle="tooltip" data-placement="bottom" title="Undo"></i>
+                        </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">
+                            <i class="fas fa-redo text-white" data-toggle="tooltip" data-placement="bottom" title="Redo"></i>
+                        </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+                            <i class="fas fa-download text-white" data-toggle="tooltip" data-placement="bottom" title="Import" (click)="download()"></i>
+                        </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ">
+                            <i class="fas fa-trash text-white" data-toggle="tooltip" data-placement="bottom" title="Clear Canvas"></i>
+                        </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">
+                            <i class="fas fa-question-circle text-white" data-toggle="tooltip" data-placement="bottom" title="About"></i>
+                        </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <!-- <div class="row">
+        <div class="col-md-12" style="margin: 0px; padding: 0px;">
+            <div class="top text-white" style="background: #225d7e; padding: 1em;">
+                <span>
+              One of three columns
+          </span>
+            </div>
+        </div>
+    </div>-->
+  <div class="row">
+    <div class="col-md-2" style="padding: 0px;">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item tabs_style">
+          <a class="nav-link active my-nav" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"><i class="fas fa-th" data-toggle="tooltip" data-placement="bottom" title="Add Elements"></i><span class="pl-2">Elements</span></a>
+        </li>
+        <li class="nav-item tabs_style">
+          <a class="nav-link my-nav" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fas fa-edit" data-toggle="tooltip" data-placement="bottom" title="Edit"></i><span class="pl-2">Style</span></a>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div class="container">
+            <div class="accordion" id="accordionExample">
+              <div class="card ">
+                <div class="card-header bg-info text-white" id="headingOne">
+                  <h5 class="mb-0">
+                        <button class="btn btn-link text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Basic
+                        </button>
+                      </h5>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                     <div class="row">
+                                       
+                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'input')">
+
+                                            <img style="width: 50px;" src="assets/image/form.svg" alt="">
+                                            <span style="display: block; font-size: 12px;">Text Input</span>
+                                        </div>
+                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'image')">
+                                            <img style="width: 50px;" src="assets/image/image.svg" alt="">
+                                            <span style="display: block; font-size: 12px;">Image</span>
+                                            <input type="file" id="file" style="display: none" />
+                                        </div>
+                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'textArea')">
+                                            <img style="width: 40px; text-align: center;" src="assets/image/text_area.svg" alt="">
+                                            <span style="display: block; font-size: 12px;">Textarea</span>
+                                        </div>
+
+
+
+                                        <div class="col-md-6 text-center bodyC" id="draggable" (dragstart)="drag($event,'textArea')">
+                                        <div> 
+                                         <img style="width: 50px; text-align: center;" src="assets/image/bg-color.svg" alt="">
+                                            <input class="mt-2 w-100" type="text" [(ngModel)]="divBgcolor" name="bgcolor" placeholder="BG Color Name"  (keyup)="changeWrapperColor()">
+                                        </div> 
+                                    </div>
+
+                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'button')">
+                                            <div>
+                                                <img style="width:50px" src="assets/image/button.svg" alt="">
+                                                <span style="display: block; font-size: 12px;">Button</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 1')">
+                                            <div>
+                                                <img style="width:50px" src="assets/image/button.svg" alt="">
+                                                <span style="display: block; font-size: 12px;">Column 1</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 2')">
+                                            <div>
+                                                <img style="width:50px" src="assets/image/button.svg" alt="">
+                                                <span style="display: block; font-size: 12px;">Column 2</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 3')">
+                                            <div>
+                                                <img style="width:50px" src="assets/image/button.svg" alt="">
+                                                <span style="display: block; font-size: 12px;">Column 3</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 4')">
+                                            <div>
+                                                <img style="width:50px" src="assets/image/button.svg" alt="">
+                                                <span style="display: block; font-size: 12px;">Column 4</span>
+                                            </div>
+                                        </div>
+                                    </div>  
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header bg-info text-white" id="headingTwo">
+                  <h5 class="mb-0">
+                        <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Extra
+                        </button>
+                      </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 text-center" id="draggable" (dragstart)="drag($event,'button')">
+                        <img style="width: 50px;" src="assets/image/form.svg" alt="">
+                        <span style="display: block; font-size: 12px;">Button</span>
+                      </div>
+                      <div class="col-md-6 text-center" id="draggable" (dragstart)="drag($event,'image')">
+                        <img style="width: 50px;" src="assets/image/form.svg" alt="">
+                        <span style="display: block; font-size: 12px;">Image</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header bg-info text-white" id="headingThree">
+                  <h5 class="mb-0">
+                          <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Forms
+                          </button>
+                        </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'button')">
+                        <div>
+                          <img style="width: 50px;" src="assets/image/button.svg" alt="">
+                          <span style="display: block; font-size: 12px;">1 Column</span>
+                        </div>
+                      </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+          <div id="mainPanel" *ngIf="openMainPanel">
+
+            <div class="container myscroll">
+              <div class="row">
+
+                <div class="col-md-6 ">
+                  <span class="small">Btn Name</span>
+                  <input type="text" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="name" name="name" placeholder="button name">
+                </div>
+                <div class="col-md-6">
+                  <span class="small">Width</span>
+                  <input type="text" class="w-100 p-1 border inside_size bg-light"  [(ngModel)]="width" name="width" placeholder="0px">
+                </div>
+                <div class="col-md-6">
+                  <span class="small">Height</span>
+                  <input type="text" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="height" name="height" placeholder="0px">
+                </div>
+                <div class="col-md-6">
+                  <span class="small">Color</span>
+                  <input type="text" class="w-100 p-1 border inside_size bg-light"  [(ngModel)]="color" name="color" placeholder="red">
+                </div>
+                <div class="col-md-6">
+                  <span class="small">Bg Color</span>
+                  <input type="text" class="w-100 p-1 border inside_size bg-light"  [(ngModel)]="bgcolor" name="bgcolor" placeholder="red">
+                </div>
+               <div class="col-md-6">
+                <span class="small">Display</span>
+                  <select class="w-100 small border p-1 inside_size bg-light">
+                      <option value="block">block</option>
+                      <option value="inline">inline</option>
+                      <option value="inline-block">inline-block</option>
+                      <option value="none" selected>none</option>
+                    </select>
+               </div>
+                <div class="col-md-12">
+                <span class="small">Position</span>
+                  <select class="w-100 small border p-1 inside_size bg-light" id="position" [(ngModel)]="position" (change)="changePosition()">
+                      <option value="static">static</option>
+                      <option value="realtive">realtive</option>
+                      <option value="absolute">absolute</option>
+                      <option value="fixed" selected>fixed</option>
+                    </select>
+               </div>
+                 <div class="col-md-6">
+                <span class="small">Top</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+               <div class="col-md-6">
+                <span class="small">Bottom</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+                <div class="col-md-6">
+                <span class="small">Left</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+                <div class="col-md-6">
+                <span class="small">Right</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+               <span class="mrg ml-3 mt-3"> Margin</span>
+                 <div class="col-md-6">
+                <span class="small">Top</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+               <div class="col-md-6">
+                <span class="small">Bottom</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+                <div class="col-md-6">
+                <span class="small">Left</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+                <div class="col-md-6">
+                <span class="small">Right</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+
+               <span class="mrg ml-3 mt-3">Padding</span>
+                 <div class="col-md-6">
+                <span class="small">Top</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+               <div class="col-md-6">
+                <span class="small">Bottom</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+                <div class="col-md-6">
+                <span class="small">Left</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+                <div class="col-md-6">
+                <span class="small">Right</span>
+                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
+               </div>
+              
+              </div>
+                
+            </div>
+            <div class="container">
+             <div class="row mt-3 p-0">
+                  <div class="col-md-6 ">
+                    <input type="button" class="btn-info btn-sm btn_width" (click)="saveProperty()" name="Save" value="Apply">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="button" class="btn-secondary btn-sm btn_width" name="delete" (click)="deleteElement()" value="Delete">
+                  </div>
+                </div>
+            </div>
+            <div class="row mt-3 ml-0">
+              <div class="col-md-12 ">
+                <div style="background: #f7f7f7; padding: 1em;" *ngIf="buttonPanelSettings">
+                  <span><p> Button Settings</p> </span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="right" style="background: #f7f7f7; padding: 1em;" *ngIf="imagePanelSetting">
+                  <span><p> Image Settings</p></span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="right" style="background: #f7f7f7; padding: 1em;" *ngIf="textBoxPanelSettings">
+                  <span><p>TextBox and TextArea Settings</p></span>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <span class="small">Font Size :</span>
+                      <select id="fontSizeDD" class="w-100 small border bg-light" [(ngModel)]="fontsize" (change)="changeFont()">
+                        <option value="" selected>select font</option>
+                        <option value='12'>12</option>
+                        <option value='14'>14</option>
+                        <option value='16'>16</option>
+                        <option value='18'>18</option>
+                        <option value='20'>20</option>
+                        <option value='22'>22</option>
+                        <option value='24'>24</option>
+                        <option value='26'>26</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <span class="small">Position</span>
+                      <select id="position" class="w-100 small border bg-light" [(ngModel)]="position" (change)="changePosition()">
+                        <option value="" selected>select position</option>
+                        <option value='realtive'>realtive</option>
+                        <option value='absolute'>absolute</option>
+                        <option value='fixed'>fixed</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="bg-light">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-8 offset-md-2 border" [style.background]="color" id="newArea" (drop)="drop($event)" (dragover)="allowDrop($event)" [style.background]="color1" style=" padding: 10px; min-height: 550px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
