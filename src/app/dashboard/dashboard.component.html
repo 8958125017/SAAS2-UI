@@ -1,63 +1,93 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-info">
+
+
+<app-header></app-header>
+<div class="container-fluid">
+  
+  <div class="row">
+    <div class="col-md-2" style="padding: 0px;">
+     <app-sidebarleft></app-sidebarleft>
+    </div>
+    <div class="col-md-8">
+      <div class="bg-light">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-8 offset-md-2 border" [style.background]="color" id="newArea" (drop)="drop($event)" (dragover)="allowDrop($event)" [style.background]="color1" style=" padding: 10px; min-height: 550px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <app-sidebarright></app-sidebarright>
+    </div>
+  </div>
+</div>
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-info p-0">
   <div class="container">
     <a class="navbar-brand text-white" href="#">SAAS2-UI</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link " href="#">
-                        <i class="fas fa-desktop text-white " data-toggle="tooltip" data-placement="bottom" title="Desktop View"></i>
-                    </a>
+            <i class="fas fa-desktop text-white " data-toggle="tooltip" data-placement="bottom" title="Desktop View"></i>
+          </a>
         </li>
       </ul>
       <div class="my-lg-0">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link " href="#">
-                            <i class="fas fa-square text-white" data-toggle="tooltip" data-placement="bottom" title="Show Borders"></i>
-                        </a>
+            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+              <i class="fas fa-edit text-white" data-toggle="tooltip" data-placement="bottom" title="Create New"></i>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="#">
-                            <i class="fas fa-eye text-white" data-toggle="tooltip" data-placement="bottom" title="Preview"></i>
-                        </a>
+              <i class="fas fa-square text-white" data-toggle="tooltip" data-placement="bottom" title="Show Borders"></i>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="#">
-                            <i class="fas fa-arrows-alt text-white" data-toggle="tooltip" data-placement="bottom" title="Fullscreen"></i>
-                        </a>
+              <i class="fas fa-eye text-white" data-toggle="tooltip" data-placement="bottom" title="Preview"></i>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="#">
-                            <i class="fas fa-code text-white" data-toggle="tooltip" data-placement="bottom" title="Export"></i>
-                        </a>
+              <i class="fas fa-arrows-alt text-white" data-toggle="tooltip" data-placement="bottom" title="Fullscreen"></i>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="#">
-                            <i class="fas fa-undo text-white" data-toggle="tooltip" data-placement="bottom" title="Undo"></i>
-                        </a>
+              <i class="fas fa-code text-white" data-toggle="tooltip" data-placement="bottom" title="Export"></i>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="#">
-                            <i class="fas fa-redo text-white" data-toggle="tooltip" data-placement="bottom" title="Redo"></i>
-                        </a>
+              <i class="fas fa-undo text-white" data-toggle="tooltip" data-placement="bottom" title="Undo"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#">
+              <i class="fas fa-redo text-white" data-toggle="tooltip" data-placement="bottom" title="Redo"></i>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link">
-                            <i class="fas fa-download text-white" data-toggle="tooltip" data-placement="bottom" title="Import" (click)="download()"></i>
-                        </a>
+              <i class="fas fa-download text-white" data-toggle="tooltip" data-placement="bottom" title="Import" (click)="generateFile()"></i>
+            </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" (click)="clearDrawArea()">
             <a class="nav-link ">
-                            <i class="fas fa-trash text-white" data-toggle="tooltip" data-placement="bottom" title="Clear Canvas"></i>
-                        </a>
+              <i class="fas fa-trash text-white" data-toggle="tooltip" data-placement="bottom" title="Clear Canvas"></i>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="#">
-                            <i class="fas fa-question-circle text-white" data-toggle="tooltip" data-placement="bottom" title="About"></i>
-                        </a>
+              <i class="fas fa-question-circle text-white" data-toggle="tooltip" data-placement="bottom" title="About"></i>
+            </a>
           </li>
         </ul>
       </div>
@@ -65,106 +95,108 @@
   </div>
 </nav>
 <div class="container-fluid">
-  <!-- <div class="row">
-        <div class="col-md-12" style="margin: 0px; padding: 0px;">
-            <div class="top text-white" style="background: #225d7e; padding: 1em;">
-                <span>
-              One of three columns
-          </span>
-            </div>
-        </div>
-    </div>-->
   <div class="row">
     <div class="col-md-2" style="padding: 0px;">
-      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <ul class="nav nav-pills" id="pills-tab" role="tablist">
         <li class="nav-item tabs_style">
           <a class="nav-link active my-nav" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"><i class="fas fa-th" data-toggle="tooltip" data-placement="bottom" title="Add Elements"></i><span class="pl-2">Elements</span></a>
         </li>
         <li class="nav-item tabs_style">
-          <a class="nav-link my-nav" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fas fa-edit" data-toggle="tooltip" data-placement="bottom" title="Edit"></i><span class="pl-2">Style</span></a>
+          <a class="nav-link my-nav my-nav-two" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fas fa-edit" data-toggle="tooltip" data-placement="bottom" title="Edit"></i><span class="pl-2">Style</span></a>
         </li>
       </ul>
       <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-          <div class="container">
+          <div class="container pl-0 pr-0">
             <div class="accordion" id="accordionExample">
               <div class="card ">
                 <div class="card-header bg-info text-white" id="headingOne">
                   <h5 class="mb-0">
-                        <button class="btn btn-link text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Basic
-                        </button>
-                      </h5>
+                  <button class="btn btn-link text-white p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Basic
+                  </button>
+                  </h5>
                 </div>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseOne" class="collapse show myscroll scrollstyle" aria-labelledby="headingOne" data-parent="#accordionExample">
                   <div class="card-body">
-                     <div class="row">
-                                       
-                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'input')">
-
-                                            <img style="width: 50px;" src="assets/image/form.svg" alt="">
-                                            <span style="display: block; font-size: 12px;">Text Input</span>
-                                        </div>
-                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'image')">
-                                            <img style="width: 50px;" src="assets/image/image.svg" alt="">
-                                            <span style="display: block; font-size: 12px;">Image</span>
-                                            <input type="file" id="file" style="display: none" />
-                                        </div>
-                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'textArea')">
-                                            <img style="width: 40px; text-align: center;" src="assets/image/text_area.svg" alt="">
-                                            <span style="display: block; font-size: 12px;">Textarea</span>
-                                        </div>
-
-
-
-                                        <div class="col-md-6 text-center bodyC" id="draggable" (dragstart)="drag($event,'textArea')">
-                                        <div> 
-                                         <img style="width: 50px; text-align: center;" src="assets/image/bg-color.svg" alt="">
-                                            <input class="mt-2 w-100" type="text" [(ngModel)]="divBgcolor" name="bgcolor" placeholder="BG Color Name"  (keyup)="changeWrapperColor()">
-                                        </div> 
-                                    </div>
-
-                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'button')">
-                                            <div>
-                                                <img style="width:50px" src="assets/image/button.svg" alt="">
-                                                <span style="display: block; font-size: 12px;">Button</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 1')">
-                                            <div>
-                                                <img style="width:50px" src="assets/image/button.svg" alt="">
-                                                <span style="display: block; font-size: 12px;">Column 1</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 2')">
-                                            <div>
-                                                <img style="width:50px" src="assets/image/button.svg" alt="">
-                                                <span style="display: block; font-size: 12px;">Column 2</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 3')">
-                                            <div>
-                                                <img style="width:50px" src="assets/image/button.svg" alt="">
-                                                <span style="display: block; font-size: 12px;">Column 3</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 4')">
-                                            <div>
-                                                <img style="width:50px" src="assets/image/button.svg" alt="">
-                                                <span style="display: block; font-size: 12px;">Column 4</span>
-                                            </div>
-                                        </div>
-                                    </div>  
+                    
+                    <div class="row">
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'container')">
+                        <div>
+                          <img style="width:50px" src="assets/image/container.svg" alt="">
+                          <span style="display: block; font-size: 12px;">Container</span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'container-fluid')">
+                        <div>
+                          <img style="width:50px" src="assets/image/container.svg" alt="">
+                          <span style="display: block; font-size: 12px;">container-fluid</span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 1')">
+                        <div>
+                          <img style="width:50px" src="assets/image/container.svg" alt="">
+                          <span style="display: block; font-size: 12px;">Column 1</span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 2')">
+                        <div>
+                          <img style="width:50px" src="assets/image/column-2.svg" alt="">
+                          <span style="display: block; font-size: 12px;">Column 2</span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 3')">
+                        <div>
+                          <img style="width:50px" src="assets/image/column-3.svg" alt="">
+                          <span style="display: block; font-size: 12px;">Column 3</span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'column 4')">
+                        <div>
+                          <img style="width:50px" src="assets/image/column-3-4.svg" alt="">
+                          <span style="display: block; font-size: 12px;">Column 4</span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'input')">
+                        <img style="width: 50px;" src="assets/image/form.svg" alt="">
+                        <span style="display: block; font-size: 12px;">Text Input</span>
+                      </div>
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'label')">
+                        <img style="width: 50px;" src="assets/image/text.svg" alt="">
+                        <span style="display: block; font-size: 12px;">Text</span>
+                      </div>
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'image')">
+                        <img style="width: 50px;" src="assets/image/image.svg" alt="">
+                        <span style="display: block; font-size: 12px;">Image</span>
+                        <input type="file" id="file" style="display: none" />
+                      </div>
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'textArea')">
+                        <img style="width: 40px; text-align: center;" src="assets/image/text_area.svg" alt="">
+                        <span style="display: block; font-size: 12px;">Textarea</span>
+                      </div>
+                      <div class="col-md-6 text-center bodyC" id="draggable" (dragstart)="drag($event,'textArea')">
+                        <div>
+                          <img style="width: 50px; text-align: center;" src="assets/image/bg-color.svg" alt="">
+                          <input class="mt-2 w-100" type="text" [(ngModel)]="divBgcolor" name="bgcolor" placeholder="BG Color Name" (keyup)="changeWrapperColor()">
+                        </div>
+                      </div>
+                      <div class="col-md-6 text-center my-drag" id="draggable" (dragstart)="drag($event,'button')">
+                        <div>
+                          <img style="width:50px" src="assets/image/button.svg" alt="">
+                          <span style="display: block; font-size: 12px;">Button</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="card">
                 <div class="card-header bg-info text-white" id="headingTwo">
                   <h5 class="mb-0">
-                        <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Extra
-                        </button>
-                      </h5>
+                  <button class="btn btn-link collapsed text-white p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Extra
+                  </button>
+                  </h5>
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                   <div class="card-body">
@@ -184,10 +216,10 @@
               <div class="card">
                 <div class="card-header bg-info text-white" id="headingThree">
                   <h5 class="mb-0">
-                          <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Forms
-                          </button>
-                        </h5>
+                  <button class="btn btn-link collapsed text-white p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Forms
+                  </button>
+                  </h5>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                   <div class="card-body">
@@ -198,7 +230,7 @@
                           <span style="display: block; font-size: 12px;">1 Column</span>
                         </div>
                       </div>
-                    
+                      
                     </div>
                   </div>
                 </div>
@@ -206,115 +238,199 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
+        <div class="tab-pane fade " id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
           <div id="mainPanel" *ngIf="openMainPanel">
-
-            <div class="container myscroll">
+            <div class="container">
               <div class="row">
-
-                <div class="col-md-6 ">
-                  <span class="small">Btn Name</span>
-                  <input type="text" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="name" name="name" placeholder="button name">
+                <div class="accordion w-100" id="accordionExample">
+                  <div class="card ">
+                    <div class="card-header bg-info text-white" id="headingFour">
+                      <h5 class="mb-0">
+                      <button class="btn btn-link text-white p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                      Basic
+                      </button>
+                      </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6 ">
+                            <span class="small">Btn Name</span>
+                            <input type="text" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="name" name="name" placeholder="btn name">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Width</span>
+                            <input type="text" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="width" name="width" placeholder="0px">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Height</span>
+                            <input type="text" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="height" name="height" placeholder="0px">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Color</span>
+                            <input type="text" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="color" name="color" placeholder="red">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Bg Color</span>
+                            <input type="text" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="bgcolor" name="bgcolor" placeholder="red">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Display</span>
+                            <select class="w-100 small border p-1 inside_size bg-light">
+                              <option value="block">block</option>
+                              <option value="inline">inline</option>
+                              <option value="inline-block">inline-block</option>
+                              <option value="none" selected>none</option>
+                            </select>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header bg-info text-white" id="headingFive">
+                      <h5 class="mb-0">
+                      <button class="btn btn-link collapsed text-white p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      Margin
+                      </button>
+                      </h5>
+                    </div>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <span class="small">Top</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="marginTop" (keyup)="changeMarginStyle('top')" value="0" name="top" min="0" max="1000">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Bottom</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="marginBottom" (keyup)="changeMarginStyle('bottom')" value="0" name="bottom" min="0" max="1000">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Left</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="marginLeft" (keyup)="changeMarginStyle('left')" value="0" name="left" min="0" max="1000">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Right</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="marginRight" (keyup)="changeMarginStyle('right')" value="0" name="right" min="0" max="1000">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header bg-info text-white" id="headingSix">
+                      <h5 class="mb-0">
+                      <button class="btn btn-link collapsed text-white p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                      Padding
+                      </button>
+                      </h5>
+                    </div>
+                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <span class="small">Top</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="paddingTop" (keyup)="changepaddingStyle('top')" value="0" name="top" min="0" max="1000">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Bottom</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="paddingBottom" (keyup)="changepaddingStyle('bottom')"  value="0" name="bottom" min="0" max="1000">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Left</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="paddingLeft" (keyup)="changepaddingStyle('left')" value="0" name="left" min="0" max="1000">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Right</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="paddingRight" (keyup)="changepaddingStyle('right')"  value="0" name="right" min="0" max="1000">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card ">
+                    <div class="card-header bg-info text-white" id="headingEight">
+                      <h5 class="mb-0">
+                      <button class="btn btn-link collapsed text-white p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                      Position
+                      </button>
+                      </h5>
+                    </div>
+                    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <select class="w-100 small border p-1 inside_size bg-light" id="position" [(ngModel)]="position" (change)="changePosition()">
+                              <option value="static">static</option>
+                              <option value="realtive">realtive</option>
+                              <option value="absolute">absolute</option>
+                              <option value="fixed" selected>fixed</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <span class="small">Top</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="top" (keyup)="changePositionStyle('top')"
+                            value="0" name="top" min="0" max="1000">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Bottom</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="bottom" (keyup)="changePositionStyle('bottom')"
+                            value="0" name="bottom" min="0" max="1000">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Left</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="left" (keyup)="changePositionStyle('left')"
+                            value="0" name="left" min="0" max="1000">
+                          </div>
+                          <div class="col-md-6">
+                            <span class="small">Right</span>
+                            <input type="number" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="right" (keyup)="changePositionStyle('right')"
+                            value="0" name="right" min="0" max="1000">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card ">
+                    <div class="card-header bg-info text-white" id="headingSeven">
+                      <h5 class="mb-0">
+                      <button class="btn btn-link collapsed text-white p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                      Float
+                      </button>
+                      </h5>
+                    </div>
+                    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <select class="w-100 small border p-1 inside_size bg-light">
+                              <option value="block">Left</option>
+                              <option value="inline">Right</option>
+                              <option value="inline-block">None</option>
+                              <option value="inline-block">Inherit</option>
+                              <option value="none" selected>Select</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <span class="small">Width</span>
-                  <input type="text" class="w-100 p-1 border inside_size bg-light"  [(ngModel)]="width" name="width" placeholder="0px">
-                </div>
-                <div class="col-md-6">
-                  <span class="small">Height</span>
-                  <input type="text" class="w-100 p-1 border inside_size bg-light" [(ngModel)]="height" name="height" placeholder="0px">
-                </div>
-                <div class="col-md-6">
-                  <span class="small">Color</span>
-                  <input type="text" class="w-100 p-1 border inside_size bg-light"  [(ngModel)]="color" name="color" placeholder="red">
-                </div>
-                <div class="col-md-6">
-                  <span class="small">Bg Color</span>
-                  <input type="text" class="w-100 p-1 border inside_size bg-light"  [(ngModel)]="bgcolor" name="bgcolor" placeholder="red">
-                </div>
-               <div class="col-md-6">
-                <span class="small">Display</span>
-                  <select class="w-100 small border p-1 inside_size bg-light">
-                      <option value="block">block</option>
-                      <option value="inline">inline</option>
-                      <option value="inline-block">inline-block</option>
-                      <option value="none" selected>none</option>
-                    </select>
-               </div>
-                <div class="col-md-12">
-                <span class="small">Position</span>
-                  <select class="w-100 small border p-1 inside_size bg-light" id="position" [(ngModel)]="position" (change)="changePosition()">
-                      <option value="static">static</option>
-                      <option value="realtive">realtive</option>
-                      <option value="absolute">absolute</option>
-                      <option value="fixed" selected>fixed</option>
-                    </select>
-               </div>
-                 <div class="col-md-6">
-                <span class="small">Top</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-               <div class="col-md-6">
-                <span class="small">Bottom</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-                <div class="col-md-6">
-                <span class="small">Left</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-                <div class="col-md-6">
-                <span class="small">Right</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-               <span class="mrg ml-3 mt-3"> Margin</span>
-                 <div class="col-md-6">
-                <span class="small">Top</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-               <div class="col-md-6">
-                <span class="small">Bottom</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-                <div class="col-md-6">
-                <span class="small">Left</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-                <div class="col-md-6">
-                <span class="small">Right</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-
-               <span class="mrg ml-3 mt-3">Padding</span>
-                 <div class="col-md-6">
-                <span class="small">Top</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-               <div class="col-md-6">
-                <span class="small">Bottom</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-                <div class="col-md-6">
-                <span class="small">Left</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-                <div class="col-md-6">
-                <span class="small">Right</span>
-                  <input type="number" class="w-100 p-1 border inside_size bg-light" value="0" name="top" min="0" max="10">
-               </div>
-              
               </div>
-                
             </div>
             <div class="container">
-             <div class="row mt-3 p-0">
-                  <div class="col-md-6 ">
-                    <input type="button" class="btn-info btn-sm btn_width" (click)="saveProperty()" name="Save" value="Apply">
-                  </div>
-                  <div class="col-md-6">
-                    <input type="button" class="btn-secondary btn-sm btn_width" name="delete" (click)="deleteElement()" value="Delete">
-                  </div>
+              <div class="row mt-3 p-0">
+                <div class="col-md-6 ">
+                  <input type="button" class="btn-info btn-sm btn_width" (click)="saveProperty()" name="Save" value="Apply">
                 </div>
+                <div class="col-md-6">
+                  <input type="button" class="btn-secondary btn-sm btn_width" name="delete" (click)="deleteElement()" value="Delete">
+                </div>
+              </div>
             </div>
             <div class="row mt-3 ml-0">
               <div class="col-md-12 ">
@@ -360,9 +476,11 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
-    <div class="col-md-10">
+
+    <div class="col-md-8">
       <div class="bg-light">
         <div class="row">
           <div class="col-md-12">
@@ -372,5 +490,149 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+    
+    <div class="col-md-2">
+      <div class="bg-light">
+        <div class="row">
+          <div class="col-md-12 pr-0">
+            <div class="accordion w-100" id="accordionExample1">
+              <div class="card">
+                <div class="card-header bg-info text-white" id="headingEleven1">
+                  <h5 class="mb-0">
+                  <button class="btn btn-link text-white p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseEleven1" aria-expanded="true" aria-controls="collapseEleven1">
+                  Modules
+                  </button>
+                  </h5>
+                </div>
+                <div id="collapseEleven1" class="collapse show mymodule" aria-labelledby="headingEleven1" data-parent="#accordionExample1">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="input-group input-group-sm mb-3" *ngIf="enableModel">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text module_font" id="inputGroup-sizing-sm">Model Name: </span>
+                          </div>
+                          <input type="text" class="form-control inside_size" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="modelName" name="model" placeholder="model name">
+                        </div>
+                       <div class="input-group input-group-sm mb-3" *ngIf="enableApi">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text module_font" id="inputGroup-sizing-sm">Function Name:</span>
+                          </div>
+                          <input type="text" class="form-control inside_size" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="functionName" name="fucntion" placeholder="model name">
+                        </div>
+                        
+                        
+                        <div class="input-group input-group-sm mb-1" *ngIf="enableModel">
+                          <input type="button" class="btn-info btn-sm btn_width" (click)="setProperty()" name="Save" value="Save">
+                        </div>
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header bg-info text-white" id="heading">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link text-white collapsed p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseEleven2" aria-expanded="false" aria-controls="collapseEleven2">
+                    Functionality
+                    </button>
+                    </h5>
+                  </div>
+                  <div id="collapseEleven2" class="collapse" aria-labelledby="headingEleven2" data-parent="#accordionExample1">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-12" *ngIf="enableApi">
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text module_font" id="inputGroup-sizing-sm">Api 1</span>
+                            </div>
+                             <input type="button" name="login" value="login" (click)="login()">
+                             
+                          </div>
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text module_font" id="inputGroup-sizing-sm">Api 2</span>
+                            </div>
+                            <input type="button" name="signup" value="signup" (click)="signup()">
+                          </div>
+                          <div class="input-group input-group-sm mb-1" *ngIf="enableApi">
+                          <input type="button" class="btn-info btn-sm btn_width" (click)="setProperty()" name="Save" value="Save">
+                        </div>
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header bg-info text-white" id="headingEleven3">
+                      <h5 class="mb-0">
+                      <button class="btn btn-link text-white collapsed p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseEleven3" aria-expanded="false" aria-controls="collapseEleven3">
+                      Validation
+                      </button>
+                      </h5>
+                    </div>
+                    <div id="collapseEleven3" class="collapse mychckbox" aria-labelledby="headingEleven3" data-parent="#accordionExample1">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input border" id="customCheck1">
+                              <label class="custom-control-label" for="customCheck1">Option 1</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input border" id="customCheck2">
+                              <label class="custom-control-label" for="customCheck2">Option 2</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input border" id="customCheck3">
+                              <label class="custom-control-label" for="customCheck3">Option 3</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input border" id="customCheck4">
+                              <label class="custom-control-label" for="customCheck4">Option 4</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input border" id="customCheck5">
+                              <label class="custom-control-label" for="customCheck5">Option 5</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade hide" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New Page</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text module_font" id="inputGroup-sizing-sm">Page Name</span>
+              </div>
+              <input type="text" class="form-control inside_size" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="componentName">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn_width btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-sm btn_width btn-info"  (click)="saveComponentName()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+ -->

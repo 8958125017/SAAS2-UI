@@ -30,7 +30,22 @@ export class DotsComponent implements OnInit {
   divBgcolor : any;
 
 
-  
+         // position
+  positionprop : any;
+  top: string;
+  bottom: string;
+  left: string;
+  right: string;
+  // margin
+  marginTop : any;
+  marginBottom : any;
+  marginLeft : any;
+  marginRight : any;
+  // padding
+  paddingTop : any;
+  paddingBottom : any;
+  paddingLeft : any;
+  paddingRight : any;
 
 
  totalComponents : any = {textbox : [], textArea : [], button:[], image :[], column1 : [], coulmn2 :[], column3:[], column4 :[]};
@@ -92,7 +107,6 @@ drop(ev) {
        data.style.margin = '8px 0px';
        data.onclick = this.clickCurrentInput.bind(this,count);
        data.setAttribute("placeholder","TextBox"+count);
-       data.setAttribute("draggable",true);
        this.fontsize = data.style.fontSize;
        this.position = data.style.position;
        // var node =`<input type="text" [(ngModel)]="dynamic_text_`+count+`" id="dynamic_text_`+count+`" placeholder="dynamic_text_`+count+`" style="height:10%;width:100%" class="dynamic_text">`;
@@ -117,7 +131,6 @@ drop(ev) {
        data.className ="dynamic_image";
        data.id = "dynamic_image_"+count;
        data.onclick = this.clickCurrentImage.bind(this,count);
-       data.setAttribute("draggable",true);
        // this.totalComponents.image.push({imageName : data.id, src : data.src});
        console.log('image src::',data,data.src);
      break;
@@ -134,7 +147,6 @@ drop(ev) {
        data.setAttribute("placeholder","TextArea"+count);
        data.className ="dynamic_text";
        data.id = "dynamic_text_"+count;
-       data.setAttribute("draggable",true);
        data.onclick = this.clickCurrentInput.bind(this,count);
        
        this.totalComponents.textArea.push({modelName : data.id});
@@ -156,7 +168,6 @@ drop(ev) {
        data.setAttribute("type" ,"button");
        data.setAttribute("name" ,"button");
        data.setAttribute("value","Button"+count);
-       data.setAttribute("draggable",true);
        this.fontsize = data.style.fontSize;
        this.position = data.style.position;
 
@@ -175,7 +186,6 @@ drop(ev) {
        data.className ="dynamic_coulmn1";
        data.id = "dynamic_coulmn1_"+count;
        data.innerHTML = '<div class="col-md-12 border" id="'+data.id+'1"></div>';
-       data.setAttribute("draggable",true);
        this.totalComponents.column1.push({column1 : data.id});
        break;
 
@@ -183,7 +193,6 @@ drop(ev) {
        this.buttonPanelSettings = true;
        data = document.createElement('div');
        data.setAttribute('id', 'column2');
-       data.setAttribute("draggable",true);
        data.setAttribute('class', 'row');
        data.style.height = '200px';
        data.style.width = 'auto';
@@ -200,7 +209,6 @@ drop(ev) {
        data = document.createElement('div');
        data.setAttribute('id', 'column2');
        data.setAttribute('class', 'row');
-       data.setAttribute("draggable",true);
        data.style.height = '200px';
        data.style.width = 'auto';
        data.style.backgroundColor = 'yellow';
@@ -216,7 +224,6 @@ drop(ev) {
        data = document.createElement('div');
        data.setAttribute('id', 'column4');
        data.setAttribute('class', 'row');
-       data.setAttribute("draggable",true);
        data.style.height = '200px';
        data.style.width = 'auto';
        data.style.backgroundColor = 'yellow';
@@ -234,9 +241,8 @@ drop(ev) {
 
    ev.target.appendChild(data);
    this.openMainPanel = true;
-   this.messageService.sendLatestGenerateFile(this.totalComponents);
-   data = '';
-   localStorage.removeItem('drawShape');
+    // var mainDiv = document.getElementById('newArea');
+    // mainDiv.appendChild(data);
  }
 
 
@@ -273,8 +279,73 @@ previewFile(data, element, event) {
           // data.src = reader.result;
           this.totalComponents.image.push({imageName : data.id, src : data.src});
       }
+
  }
 
+ // to download the files
+ download(){
+
+   var downloadHTML = document.getElementById("newArea");
+   
+   var elements = (<HTMLInputElement>document.getElementById("newArea")).children;
+   var script = '';
+
+   if(elements){
+       for (var i = 0; i < elements.length; i++){
+
+         if(elements[i].id.indexOf('text')!=-1){
+
+           script = script + 'var '+elements[i].id+'= document.getElementById("'+elements[i].id+'").value;'
+
+         }else if(elements[i].id.indexOf('button') != -1){
+           script = script +'function '+elements[i].id+'(){ alert('+elements[i-1].id+','+elements[i-2].id+');};'
+
+         }else if(elements[i].id.indexOf('image') != -1){
+
+
+         }
+       }
+      
+   }
+
+   var download = `<!DOCTYPE html>
+     <html>
+     <title>HTML Tutorial</title>
+     <style>.wrapper{ width: 600px; margin:0px auto; padding:40px; box-shadow: 0px 0px 7px #ededed;} </style>
+     <body class="wrapper">` + downloadHTML.innerHTML + `
+     </body>
+     </html>
+     <script>`+script+`
+     </script>`;
+   console.log(download);
+   this.downloadNew(download, "login.component.html", "text/plain");
+ }
+
+
+ downloadNew(data, filename, type) {
+   var file = new Blob([data], {type: type});
+   if (window.navigator.msSaveOrOpenBlob) // IE10+
+       window.navigator.msSaveOrOpenBlob(file, filename);
+   else { // Others
+       var a = document.createElement('a'),
+               url = URL.createObjectURL(file);
+       a.href = url;
+       a.download = filename;
+       document.body.appendChild(a);
+       a.click();
+       setTimeout(function() {
+           document.body.removeChild(a);
+           window.URL.revokeObjectURL(url);
+       }, 0);
+   }
+}
+
+parseHTML(html) {
+  var el = document.createElement('div');
+  el.innerHTML = html;
+
+  return el.childNodes;
+}
 
   clickCurrentInput(count) {
     this.buttonPanelSettings = false;
@@ -332,5 +403,184 @@ previewFile(data, element, event) {
       // this.name = element.value;
     }
   }
+
+
+  saveProperty(){
+    if(this.buttonPanelSettings){
+        var element = document.getElementById("dynamic_button_"+this.count);
+        element.style.height = this.height+"%";
+        element.style.width = this.width+"%";
+        element.style.color = this.color;   
+
+        element.style.backgroundColor = this.bgcolor;
+        element.setAttribute('value',this.name);
+      }
+      else if(this.textBoxPanelSettings){
+        var element = document.getElementById("dynamic_text_"+this.count);
+        element.style.height = this.height+"%";
+        element.style.width = this.width+"%"; 
+        element.style.color = this.color;   
+        element.style.backgroundColor = this.bgcolor;
+      }
+      else if(this.imagePanelSetting){
+        var element = document.getElementById("dynamic_image_"+this.count);
+        element.style.height = this.height+"%";
+        element.style.width = this.width+"%";    
+      }
+  }
+
+  changeFont(){
+
+     if(this.buttonPanelSettings){
+        var element = document.getElementById("dynamic_button_"+this.count);
+        element.style.fontSize = this.fontsize+"px";
+      }
+      else if(this.textBoxPanelSettings){
+        var element = document.getElementById("dynamic_text_"+this.count);
+        element.style.fontSize = this.fontsize+"px";
+      }
+      else if(this.imagePanelSetting){
+        var element = document.getElementById("dynamic_image_"+this.count);
+            
+      }
+
+    // var element = document.getElementById("dynamic_text_"+this.count);
+    // element.style.fontSize = this.fontsize+"px";
+  }
+
+  
+changePositionStyle(type){
+    console.log(type);
+    var element = document.getElementById("dynamic_button_" + this.count);
+     switch(type){
+       case 'top' : element.style.top = this.top + "px"; break;
+       case 'bottom' : element.style.bottom = this.bottom + "px"; break;
+       case 'left' : element.style.left = this.left + "px"; break;
+       case 'right' : element.style.right = this.right + "px"; break;
+     }
+  }
+  changeMarginStyle(type){
+    console.log(type);
+    var element = document.getElementById('dynamic_button_' + this.count);
+     switch(type){
+       case 'top' : element.style.marginTop = this.marginTop+"px"; break;
+       case 'bottom' : element.style.marginBottom = this.marginBottom+"px"; break;
+       case 'left' : element.style.marginLeft = this.marginLeft+"px"; break;
+       case 'right' : element.style.marginRight = this.marginRight+"px"; break;
+     }
+  }
+  changePaddingStyle(type){
+    console.log(type);
+    var element = document.getElementById('dynamic_button_' + this.count);
+     switch(type){
+       case 'top' : element.style.paddingTop = this.paddingTop+"px"; break;
+       case 'bottom' : element.style.paddingBottom = this.paddingBottom+"px"; break;
+       case 'left' : element.style.paddingLeft = this.paddingLeft+"px"; break;
+       case 'right' : element.style.paddingRight = this.paddingRight+"px"; break;
+     }
+  }
+  deleteElement(){
+    if(this.buttonPanelSettings) document.getElementById("dynamic_button_"+this.count).remove();
+    if(this.textBoxPanelSettings) document.getElementById("dynamic_text_"+this.count).remove();
+    if(this.imagePanelSetting) document.getElementById("dynamic_image_"+this.count).remove();
+    this.textBoxPanelSettings = false;
+    this.imagePanelSetting = false;
+    this.buttonPanelSettings = false;
+    // this.openMainPanel = false;
+  }
+
+ WriteToFile(data) {
+       var loginComponent = `
+       import { Component } from '@angular/core';
+          @Component({
+            selector: 'login-root',
+            templateUrl: './login.component.html',
+            styleUrls: ['./login.component.css']
+          })
+          export class LoginComponent {
+            constructor(){};
+            title = 'login';
+            `+data+` : any;
+          }`;  
+
+       const blob = new Blob([loginComponent], { type: 'text/plain' });
+       saveAs(blob, 'login.component.ts');
+    if (this.textFile !== null) {
+      window.URL.revokeObjectURL(this.textFile);
+    }
+
+    this.textFile = window.URL.createObjectURL(blob);
+    debugger;
+ }
+
+ changeWrapperColor() {
+    document.getElementById('newArea').style.background = this.divBgcolor;
+ }
+
+
+ setProperty(){
+      this.totalComponents.textbox[this.count].modelName = this.modelName;
+     this.totalComponents.button[this.count].buttonName = this.functionName;
+ }
+
+ saveComponentName(){
+   this.componentName
+   $('#exampleModal').modal('hide');
+ }
+
+ clearDrawArea(){
+   $('#newArea').empty();
+ }
+
+ login(){
+   var postData = ''; 
+   for(var i=0;i<this.totalComponents.textbox.length; i++){
+     postData += ''+this.totalComponents.textbox[i].modelName+' : this.'+this.totalComponents.textbox[i].modelName+",";
+   }
+   this.totalComponents.button[this.count].defination = this.totalComponents.button[this.count].buttonName+`(){
+               this.http
+                  .post('/api/login', {`+postData+`})
+                    .subscribe(data => {
+                          alert('ok');
+                    }, error => {
+                        console.log(error.json());
+                    });
+             }
+             `;
+ }
+
+ signup(){
+   var postData = ''; 
+   for(var i=0;i<this.totalComponents.textbox.length; i++){
+     postData += ''+this.totalComponents.textbox[i].modelName+' : this.'+this.totalComponents.textbox[i].modelName+",";
+   }
+   this.totalComponents.button[this.count].defination = this.totalComponents.button[this.count].buttonName+`(){
+                  this.http
+                  .post('http://localhost:5000/api/signup', {`+postData+`})
+                    .subscribe(data => {
+                          alert('ok');
+                    }, error => {
+                        console.log(error.json());
+                    });
+             }`;
+ }
+
+ generateFile(){
+   console.log('this.totalComponents:',this.totalComponents);
+   if(this.componentName &&(this.totalComponents.textbox.length || this.totalComponents.button.length || this.totalComponents.textArea.length)){
+       this.http.post('http://localhost:5000/api/createFile', {totalComponent :this.totalComponents, componentName : this.componentName})
+                .subscribe(data => {
+                      if(data.json().status ===200){
+                        alert(data.json().message);
+                      }
+                }, error => {
+                    console.log(error.json());
+                });
+    }else{
+      alert('Please add page first and draw components.');
+    }
+ }
+
+
 }
 

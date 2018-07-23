@@ -1,0 +1,124 @@
+ 
+      <div class="bg-light">
+        <div class="row">
+          <div class="col-md-12 pr-0">
+            <div class="accordion w-100" id="accordionExample1">
+              <div class="card">
+                <div class="card-header bg-info text-white" id="headingEleven1">
+                  <h5 class="mb-0">
+                  <button class="btn btn-link text-white p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseEleven1" aria-expanded="true" aria-controls="collapseEleven1">
+                  Modules
+                  </button>
+                  </h5>
+                </div>
+                <div id="collapseEleven1" class="collapse show mymodule" aria-labelledby="headingEleven1" data-parent="#accordionExample1">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="input-group input-group-sm mb-3" *ngIf="enableModel">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text module_font" id="inputGroup-sizing-sm">Model Name: </span>
+                          </div>
+                          <input type="text" class="form-control inside_size" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="modelName" name="model" placeholder="model name">
+                        </div>
+
+                        <div class="input-group input-group-sm mb-3" *ngIf="enableApi">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text module_font" id="inputGroup-sizing-sm">Button Name:</span>
+                          </div>
+                          <input type="text" class="form-control inside_size" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="buttonName" name="fucntion" placeholder="model name">
+                        </div>
+
+                       <div class="input-group input-group-sm mb-3" *ngIf="enableApi">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text module_font" id="inputGroup-sizing-sm">Function Name:</span>
+                          </div>
+                          <input type="text" class="form-control inside_size" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(ngModel)]="functionName" name="fucntion" placeholder="model name">
+                        </div>
+                        
+                        
+                        <div class="input-group input-group-sm mb-1" *ngIf="enableModel || enableApi">
+                          <input type="button" class="btn-info btn-sm btn_width" (click)="setProperty()" name="Save" value="Save">
+                        </div>
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header bg-info text-white" id="heading">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link text-white collapsed p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseEleven2" aria-expanded="false" aria-controls="collapseEleven2">
+                    Functionality
+                    </button>
+                    </h5>
+                  </div>
+                  <div id="collapseEleven2" class="collapse" aria-labelledby="headingEleven2" data-parent="#accordionExample1">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-12" *ngIf="enableApi">
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text module_font" id="inputGroup-sizing-sm">Api 1</span>
+                            </div>
+                             <input type="button" name="login" value="login" (click)="login()">
+                             
+                          </div>
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text module_font" id="inputGroup-sizing-sm">Api 2</span>
+                            </div>
+                            <input type="button" name="signup" value="signup" (click)="signup()">
+                          </div>
+                          <div class="input-group input-group-sm mb-1" *ngIf="enableApi">
+                          <input type="button" class="btn-info btn-sm btn_width" (click)="setProperty()" name="Save" value="Save">
+                        </div>
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header bg-info text-white" id="headingEleven3">
+                      <h5 class="mb-0">
+                      <button class="btn btn-link text-white collapsed p-0 tabs_style" type="button" data-toggle="collapse" data-target="#collapseEleven3" aria-expanded="false" aria-controls="collapseEleven3">
+                      Validation
+                      </button>
+                      </h5>
+                    </div>
+                    <div id="collapseEleven3" class="collapse mychckbox" aria-labelledby="headingEleven3" data-parent="#accordionExample1">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input border" id="customCheck1">
+                              <label class="custom-control-label" for="customCheck1">Option 1</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input border" id="customCheck2">
+                              <label class="custom-control-label" for="customCheck2">Option 2</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input border" id="customCheck3">
+                              <label class="custom-control-label" for="customCheck3">Option 3</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input border" id="customCheck4">
+                              <label class="custom-control-label" for="customCheck4">Option 4</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input border" id="customCheck5">
+                              <label class="custom-control-label" for="customCheck5">Option 5</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    

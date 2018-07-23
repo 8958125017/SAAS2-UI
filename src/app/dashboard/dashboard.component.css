@@ -81,6 +81,7 @@ box-shadow: none;
 
 .my-nav{
  border-radius: 0px;
+
 }
 
 .inside_size{
@@ -95,6 +96,48 @@ box-shadow: none;
 .myscroll{
   overflow: auto;
   height: 400px;
-  width:100%
+
+ 
+}
+.my-nav-two{
+   width:100px;
 }
 
+
+.mymodule .input-group>.input-group-append:last-child>.btn:not(:last-child):not(.dropdown-toggle), .input-group>.input-group-append:last-child>.input-group-text:not(:last-child), .input-group>.input-group-append:not(:last-child)>.btn, .input-group>.input-group-append:not(:last-child)>.input-group-text, .input-group>.input-group-prepend>.btn, .input-group>.input-group-prepend>.input-group-text {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: 11px;
+}
+
+
+.mychckbox .custom-control {
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
+    font-size: 13px;
+}
+
+
+.myfont{
+  font-size: 14px;
+}
+.scrollstyle::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+    cursor: pointer;
+}
+.scrollstyle::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: #F5F5F5;
+    cursor: pointer;
+}
+
+.scrollstyle::-webkit-scrollbar-thumb
+{
+  background-color: #17a2b8;
+  cursor: pointer;
+}
